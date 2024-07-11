@@ -38,10 +38,11 @@ const MemberInfo = () => {
             {memberData && (
                 <div>
                     <h2>Member Information</h2>
-                    <p><strong>Username:</strong> {memberData.user_name}</p>
-                    <p><strong>Nickname:</strong> {memberData.nick_name}</p>
-                    <p><strong>Age:</strong> {memberData.age}</p>
-                    <p><strong>Profile Image:</strong> {memberData.profile_image}</p>
+                    <p><strong>userName:</strong> {memberData.userName}</p>
+                    <p><strong>nickName:</strong> {memberData.nickName}</p>
+                    <p><strong>age:</strong> {memberData.age}</p>
+                    <p><strong>profileImage:</strong> {memberData.profileImage}</p>
+                    <strong>isMember:</strong> {memberData.isMember ? 'true' : 'false'}
                 </div>
             )}
         </div>
