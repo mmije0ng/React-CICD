@@ -6,12 +6,16 @@ import Counter from "./pages/Counter"
 import Input from "./pages/input"
 import Input2 from "./pages/input2"
 import UserList from "./pages/List"
+import MemberInfo from './components/MemberInfo';
+import SwaggerPage from './components/SwaggerPage';
 
 function App() {
   return (
     <div className="App">
       <nav>
         <Link to="/">Home</Link> | {" "}
+        <Link to="/member">Member</Link> | {" "}
+        <Link to="/swagger">Swagger</Link> | {" "}
         <Link to="/about">About</Link> | {" "} 
         <Link to="/counter">Counter</Link> | {" "} 
         <Link to="/input">Input</Link> | {" "} 
@@ -22,6 +26,8 @@ function App() {
       {/* 매핑되는 컴포넌트 */}
       <Routes>
         <Route path="/" element={<Home />}></Route>
+        <Route path="/member" element={<MemberInfo />}></Route>
+        <Route path="/swagger" element={<SwaggerPage />}></Route>
         <Route path="/about" element={<About />}></Route>
         <Route path="/counter" element={<Counter />}></Route>
         <Route path="/input" element={<Input />}></Route>
@@ -32,5 +38,13 @@ function App() {
     </div>
   );
 }
+
+// const App = () => {
+//   return (
+//       <div>
+//           <MemberInfo />
+//       </div>
+//   );
+// };
 
 export default App;
