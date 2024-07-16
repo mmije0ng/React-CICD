@@ -1,4 +1,4 @@
-name: Front Deployment
+name: Front Deployment 
 
 on:
   push:
@@ -15,27 +15,34 @@ jobs:
     steps:
       - name: Checkout source code.
         uses: actions/checkout@v2
+      
       - name: Check Node v
         run: node -v
+      
       - name: Install Dependencies
         run: yarn install --frozen-lockfile
+      
       - name: Build
         run: yarn build
+      
       - name: zip create
         run: zip -qq -r ./build.zip .
         shell: bash
+      
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v1
         with:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: ap-northeast-2
+      
       - name: Upload to S3
         run: |
           aws s3 cp --region ap-northeast-2 ./build.zip s3://mijeong-test-deploy/build.zip #본인 버킷 이름으로 수정
+    
       - name: Deploy
         run: aws deploy create-deployment \
-          --application-name mijeong-test-codedeploy-app \
+          --application-name mijeong-test-codedeploy-app \d
           --deployment-config-name CodeDeployDefault.AllAtOnce \
           --deployment-group-name mijeong-test-codedeploy-group \
           --s3-location bucket=mijeong-test-deploy,bundleType=zip,key=build.zip
