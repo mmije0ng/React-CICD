@@ -24,6 +24,9 @@ jobs:
       
       - name: Build
         run: npm run build
+
+      - name: Copy appspec.yml
+        run: cp appspec.yml ./deploy
       
       - name: zip create
         run: zip -qq -r ./build.zip .
