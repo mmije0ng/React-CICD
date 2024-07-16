@@ -42,7 +42,7 @@ jobs:
     
       - name: Deploy
         run: aws deploy create-deployment \
-          --application-name mijeong-test-codedeploy-app \d
+          --application-name mijeong-test-codedeploy-app \
           --deployment-config-name CodeDeployDefault.AllAtOnce \
           --deployment-group-name mijeong-test-codedeploy-group \
           --s3-location bucket=mijeong-test-deploy,bundleType=zip,key=build.zip
