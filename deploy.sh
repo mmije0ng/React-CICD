@@ -4,7 +4,7 @@
 export NODE_ENV=production
 
 # 애플리케이션 소스 코드가 설치될 디렉토리로 이동
-cd /home/ubuntu/
+cd /home/ubuntu/app
 
 # NPM 종속성 설치
 echo "Installing dependencies..."
