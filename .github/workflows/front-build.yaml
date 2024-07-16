@@ -5,6 +5,9 @@ on:
     branches:
       - master
 
+env:
+  AWS_REGION: ap-northeast-2
+
 # 위의 이벤트가 트리거되면 실행할 목록입니다.
 jobs:
   build:
@@ -37,21 +40,21 @@ jobs:
         with:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY_ID }}
-          aws-region: ap-northeast-2
+          aws-region: ${{ env.AWS_REGION }}
       
       - name: Upload to S3
         run: |
-          aws s3 cp --region ap-northeast-2 ./build.zip s3://mijeong-front-bucket/build.zip #본인 버킷 이름으로 수정
+          run: aws s3 cp ./$GITHUB_SHA.zip s3://${{ secrets.S3_BUCKET_NAME }}/deploy/$GITHUB_SHA.zip --region ${{ env.AWS_REGION }}
     
       - name: Deploy to CodeDeploy
         run: |
           aws deploy create-deployment \
-            --application-name mijeong-front-codeDeploy \
+            --application-name ${{ secrets.CODE_DEPLOY_APPLICATION_NAME }} \
             --deployment-config-name CodeDeployDefault.AllAtOnce \
-            --deployment-group-name mijeong-font-codeDeploy-group \
-            --s3-location bucket=mijeong-front-bucket,bundleType=zip,key=build.zip
-        env:
-          AWS_DEFAULT_REGION: ap-northeast-2
-          AWS_REGION: ap-northeast-2
-          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY_ID }}
+            --deployment-group-name ${{ secrets.CODE_DEPLOY_DEPLOYMENT_GROUP_NAME }} \
+            --s3-location bucket=${{ secrets.S3_BUCKET_NAME }},key=deploy/$GITHUB_SHA.zip,bundleType=zip
+        # env:
+        #   AWS_DEFAULT_REGION: ap-northeast-2
+        #   AWS_REGION: ap-northeast-2
+        #   AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        #   AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY_ID }}
