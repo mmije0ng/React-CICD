@@ -13,7 +13,7 @@ function App() {
   return (
     <div className="App">
       <nav>
-        <Link to="/">Home</Link> | {" "}
+        <Link to="/">Home!</Link> | {" "}
         <Link to="/member">MemberList</Link> | {" "}
         <Link to="/swagger">Swagger</Link> | {" "}
         <Link to="/about">About</Link> | {" "} 
