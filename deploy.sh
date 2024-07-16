@@ -1,7 +1,11 @@
+#!/bin/bash
+
 REPOSITORY=/home/ubuntu/deploy
 
-cd $REPOSITORY 
+cd $REPOSITORY
 
-sudo yarn install
+# NPM 설치
+sudo npm install
 
+# PM2 재시작
 sudo pm2 reload all
