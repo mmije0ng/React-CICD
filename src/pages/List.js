@@ -21,8 +21,8 @@ const UserList = () => {
         <table>
             <thead>
                 <tr>
-                    <th>이름</th>
-                    <th>이메일</th>
+                    <th>이름: </th>
+                    <th>이메일: </th>
                 </tr>
             </thead>
 

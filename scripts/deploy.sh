@@ -14,5 +14,9 @@ npm install
 echo "Starting the application..."
 pm2 startOrReload ecosystem.config.js --env production
 
+# PM2 serve로 정적 파일 서빙을 시작
+echo "Starting PM2 serve for static files..."
+pm2 serve build --port 3000
+
 # 배포 완료 메시지 출력
 echo "Deployment completed successfully."
