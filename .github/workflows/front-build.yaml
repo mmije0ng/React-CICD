@@ -38,15 +38,15 @@ jobs:
       
       - name: Upload to S3
         run: |
-          aws s3 cp --region ap-northeast-2 ./build.zip s3://mijeong-test-deploy/build.zip #본인 버킷 이름으로 수정
+          aws s3 cp --region ap-northeast-2 ./build.zip s3://mijeong-front-bucket/build.zip #본인 버킷 이름으로 수정
     
       - name: Deploy to CodeDeploy
         run: |
           aws deploy create-deployment \
-            --application-name mijeong-test-codedeploy-app \
+            --application-name mijeong-front-codeDeploy \
             --deployment-config-name CodeDeployDefault.AllAtOnce \
-            --deployment-group-name mijeong-test-codedeploy-group \
-            --s3-location bucket=mijeong-test-deploy,bundleType=zip,key=build.zip
+            --deployment-group-name mijeong-font-codeDeploy-group \
+            --s3-location bucket=mijeong-front-bucket,bundleType=zip,key=build.zip
         env:
           AWS_DEFAULT_REGION: ap-northeast-2
           AWS_REGION: ap-northeast-2
