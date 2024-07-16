@@ -1,5 +1,6 @@
 module.exports = {
   apps : [{
+    name: 'react-test',
     script: 'index.js',
     watch: '.'
   }, {
