@@ -1,6 +1,6 @@
 // constants/api.ts
 
-const API_ROOT = 'https://43.203.217.55:8080'; // 백엔드 배포 주소
+const API_ROOT = 'http://43.203.217.55:8080'; // 백엔드 배포 주소
 
 export const API_ENDPOINTS = {
     LOGIN: `${API_ROOT}/login`,
